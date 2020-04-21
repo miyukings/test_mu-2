@@ -15,8 +15,160 @@
     <!-- MAIN CSS FILE-->
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
+    <!-- CSS FILE for SLICK-->
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/slick.css" />
+
     <!--ADOBE FONT-->
     <link rel="stylesheet" href="https://use.typekit.net/bnm7oer.css">
+
+    <!-- JQUERY FOR CAROUSEL -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var setElm = $('.carousel'),
+                slideSpeed = 500,
+                slideDelay = 5000,
+                slideEasing = 'swing';
+
+            $(window).load(function () {
+                setElm.each(function () {
+                    var self = $(this),
+                        selfWidth = self.innerWidth(),
+                        selfUl = self.find('ul'),
+                        selfLi = selfUl.find('li'),
+                        liFirst = selfUl.find('li:first'),
+                        liLast = selfUl.find('li:last'),
+                        listWidth = selfLi.outerWidth(true),
+                        listCount = selfLi.length,
+                        slideWidth = listWidth * listCount;
+
+                    selfUl.css({ width: slideWidth });
+
+                    self.wrapAll('<div class="slideWrap" />').find('ul').wrapAll('<div class="movePanel" />');
+
+                    var slideWrap = self.parent('.slideWrap'),
+                        slidePanel = self.find('.movePanel');
+
+                    if (selfWidth < slideWidth) {
+                        selfUl.clone().prependTo(slidePanel);
+                        selfUl.clone().appendTo(slidePanel);
+
+                        slidePanel.find('ul').eq('1').addClass('mainList');
+
+                        var mainList = slidePanel.find('.mainList').find('li');
+                        mainList.eq('0').addClass('mainActive');
+
+                        var allList = slidePanel.find('li'),
+                            allListCount = slidePanel.find('li').length;
+
+
+                        // SLIDER AREA POSITION SETTING
+                        var baseWrapWidth = listWidth * listCount,
+                            allWrapWidth = listWidth * allListCount,
+                            posResetNext = -(baseWrapWidth) * 2,
+                            posResetPrev = -(baseWrapWidth) + (listWidth);
+
+                        slidePanel.css({ left: -(baseWrapWidth), width: allWrapWidth }).find('ul').css({ width: baseWrapWidth });
+
+
+                        // Next/Back BUTTON
+                        slideWrap.append('<a href="javascript:void(0);" class="btnPrev"></a><a href="javascript:void(0);" class="btnNext"></a>');
+
+                        var btnNext = slideWrap.find('.btnNext'),
+                            btnPrev = slideWrap.find('.btnPrev');
+
+                        btnNext.click(function () {
+                            slideNext();
+                        });
+
+                        btnPrev.click(function () {
+                            slidePrev();
+                        });
+
+                        function slideNext() {
+                            slidePanel.not(':animated').each(function () {
+                                timerStop();
+                                var posLeft = parseInt(slidePanel.css('left')),
+                                    moveLeft = posLeft - listWidth;
+                                slidePanel.stop().animate({ left: (moveLeft) }, slideSpeed, slideEasing, function () {
+                                    var adjustLeft = parseInt(slidePanel.css('left'));
+                                    if (adjustLeft <= posResetNext) {
+                                        slidePanel.css({ left: -(baseWrapWidth) });
+                                    }
+                                });
+
+                                var setActive = selfUl.find('.mainActive'),
+                                    listIndex = selfLi.index(setActive),
+                                    nextCount = listIndex + 1;
+
+                                self.find('.mainActive').removeClass('mainActive');
+
+                                if (listCount == nextCount) {
+                                    liFirst.addClass('mainActive');
+                                    selfUl.next('ul').find('li:first').addClass('mainActive');
+                                } else {
+                                    setActive.next().addClass('mainActive');
+                                }
+
+                                timerStart();
+                            });
+                        }
+
+                        function slidePrev() {
+                            slidePanel.not(':animated').each(function () {
+                                timerStop();
+                                var posLeft = parseInt(slidePanel.css('left')),
+                                    moveLeft = posLeft + listWidth;
+                                slidePanel.stop().animate({ left: (moveLeft) }, slideSpeed, slideEasing, function () {
+                                    var adjustLeft = parseInt(slidePanel.css('left'));
+                                    if (adjustLeft >= posResetPrev) {
+                                        slidePanel.css({ left: posResetNext + listWidth });
+                                    }
+                                });
+
+                                var setActive = selfUl.find('.mainActive'),
+                                    listIndex = selfLi.index(setActive),
+                                    nextCount = listIndex + 1;
+
+                                self.find('.mainActive').removeClass('mainActive');
+
+                                if (1 == nextCount) {
+                                    liLast.addClass('mainActive');
+                                    selfUl.prev('ul').find('li:last').addClass('mainActive');
+                                } else {
+                                    setActive.prev().addClass('mainActive');
+                                }
+
+                                timerStart();
+                            });
+                        }
+
+                        // SLIDE TIMER
+                        var slideTimer;
+
+                        function timerStart() {
+                            slideTimer = setInterval(function () {
+                                slideNext();
+                            }, slideDelay);
+                        }
+                        timerStart();
+
+                        function timerStop() {
+                            clearInterval(slideTimer);
+                        }
+
+                        // SLIDE ALIGN CENTER
+                        $(window).on('resize', function () {
+                            var wrapWidth = slideWrap.width();
+                            self.css({ marginLeft: (wrapWidth / 2) - (listWidth / 2) })
+                        }).resize();
+                    }
+                });
+                setElm.css({ visibility: 'visible' });
+            });
+        });
+    </script>
 
 </head>
 
@@ -59,7 +211,15 @@
             <div class="container">
                 <div class="big-logo"><img src="img/logo_orange1000x457.png" alt="Mu Logo">
                 </div>
+
+                <div class="slider">
+                    <div><img src="img/3rings.jpg" alt="Three Rings"></div>
+                    <div><img src="img/flowerset.jpg" alt="Flower Series"></div>
+                    <div><img src="img/roundbangle.jpg" alt="Geometric Series"></div>
+                </div>
             </div>
+
+
 
         </section>
 
@@ -67,45 +227,50 @@
         <section id="collection">
             <div class="container">
                 <h2 class="section-head">Collection</h2>
-                <h5>Discover Your New Style!</h5>
+                <h1 class="main-head">Discover Your New Style!</h1>
 
-                <div class="gallary-row">
-                    <div class="column one-fifth">
-                        <img src="img/flower-ring1500x1500.png" alt="Flower Ring">
-                        <h6 class="p-title">Flower</h6>
-                        <p class="p-mane">Ring<span>-F02</span></p>
-                        <p class="price">$180</p>
-                    </div>
-                    <div class="column one-fifth">
-                        <img src="img/spikyring-cutout1500x1500.png" alt="Planet Ring">
-                        <h6 class="p-title">Planet</h6>
-                        <p class="p-mane">Ring<span>-P02</span></p>
-                        <p class="price">$350</p>
-                    </div>
-                    <div class="column one-fifth">
-                        <img src="img/geometric-bangle1500x1500.png" alt="Geometric Bangle" width="300px"
-                            height="300px">
-                        <h6 class="p-title">Geometric</h6>
-                        <p class="p-mane">Bangle<span>-G01</span></p>
-                        <p class="price">$420</p>
-                    </div>
-                    <div class="column one-fifth">
-                        <img src="img/geometric-ring1500x1500.png" alt="Geometric Ring">
-                        <h6 class="p-title">Geometric</h6>
-                        <p class="p-mane">Ring<span>-G01 Onyx</span></p>
-                        <p class="price">$250</p>
-                    </div>
-                    <div class="column one-fifth">
-                        <img src="img/sputnik1500x1500-t.png" alt="Sputnik Ring">
-                        <h6 class="p-title">Sputnik</h6>
-                        <p class="p-mane">Ring<span>-S01 Turquoise</span></p>
-                        <p class="price">$380</p>
-                    </div>
+                <div id="wrapper">
+                    <div class="carousel">
+                        <ul>
+                            <li><a href="#"><img src="img/flower-ring1500x1500.png" alt="Flower Ring"></a>
+                                <h6 class="p-title">Flower</h6>
+                                <p class="p-mane">Ring<span>-F02</span></p>
+                                <p class="price">$180</p>
+                            </li>
 
-                </div>
+
+                            <li><a href="#"><img src="img/spikyring-cutout1500x1500.png" alt="Planet Ring"></a>
+                                <h6 class="p-title">Planet</h6>
+                                <p class="p-mane">Ring<span>-P02</span></p>
+                                <p class="price">$350</p>
+                            </li>
+
+                            <li><a href="#"><img src="img/geometric-bangle1500x1500.png" alt="Geometric Bangle"
+                                        width="300px" height="300px"></a>
+                                <h6 class="p-title">Geometric</h6>
+                                <p class="p-mane">Bangle<span>-G01</span></p>
+                                <p class="price">$420</p>
+                            </li>
+
+                            <li><a href="#"><img src="img/geometric-ring1500x1500.png" alt="Geometric Ring"></a>
+                                <h6 class="p-title">Geometric</h6>
+                                <p class="p-mane">Ring<span>-G01 Onyx</span></p>
+                                <p class="price">$250</p>
+                            </li>
+
+                            <li><a href="#"><img src="img/sputnik1500x1500-t.png" alt="Sputnik Ring"></a>
+                                <h6 class="p-title">Sputnik</h6>
+                                <p class="p-mane">Ring<span>-S01 Turquoise</span></p>
+                                <p class="price">$380</p>
+                            </li>
+
+                        </ul>
+                    </div><!-- /.carousel -->
+                </div><!-- /#wrapper -->
             </div>
-
         </section>
+
+
 
         <section id="about">
             <div class="container">
@@ -205,6 +370,13 @@
 
     <!-- MAIN JS FILE -->
     <script src="js/script.js"></script>
+
+    <!-- SLICK SLIDER JS FILE -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/slick.js"></script>
+
+
+
 
 </body>
 
