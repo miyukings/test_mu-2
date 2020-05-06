@@ -269,13 +269,10 @@ header.site-header  {
 /* BG IMAGE --------------------------- */
 footer {
     background-image: url(../img/mu_footerbg2000x800.jpg);
-    /* background-image: url(../img/unsplash_bg.jpg); */
     background-size: cover; 
     background-repeat: no-repeat;
-    /* margin-top: 50px; */
 }
 /* ------------------------------------- */
-
 
 .site-footer .f-container {
 display: -webkit-box;
@@ -287,7 +284,6 @@ justify-content: space-between;
 padding-top: 20px;
 }
    
-
 .site-info-menu {
     max-width: 500px;
     /* border: solid 1px blue; */   
@@ -298,6 +294,12 @@ padding-top: 20px;
     width: 300px;
     height: auto;
     color: white;
+}
+.site-info-menu li a:hover {
+    list-style: none;
+    width: 300px;
+    height: auto;
+    color: rgb(218, 73, 21);
 }
 
 .social-links {
@@ -378,34 +380,91 @@ header.site-header {
 
 
 /* SITE NAV (Primary Top Nav) */
-.site.site-nav ul {
+.side-menu ul {
     margin: 0; 
     padding: 0;
-}
-
-.side-menu li {
     list-style: none;
+    font-family: eurostile, sans-serif; 
 }
 
-.side-menu a {
-   display: block;
-   padding: .5em 1em;
-}
-
-.side-menu .container {
-    padding-top: 80px;
-}
-
-.collection-menu ul {
-font-family: eurostile, sans-serif;
-font-weight: bolder;
-}
-
-.menu-box li.main-b {
+li.menu-first {
+    list-style: none;
     font-family: eurostile, sans-serif;
-   font-size: 1.2em;
-    font-weight: bold;
- }
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.menu-second li a {
+    list-style: none;
+    font-family: eurostile, sans-serif;
+    font-size: 1.2em;
+}
+
+.menu {
+    position: relative;
+    width: 100%;
+    /* height: 50px;
+    max-width: 400px; */
+    margin: 0 auto;
+}
+
+.menu > li {
+   display: block;
+    line-height: 2em;  
+}
+
+.menu > li a {
+    display: block;
+    color: black;
+    font-size: .8em;
+}
+
+.menu > li a:hover {
+    color: rgb(218, 73, 21);
+}
+
+ul.menu-second {
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    padding-left: 100px; 
+}
+
+
+.menu > li:hover {
+    color: rgb(218, 73, 21);
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.menu-second li a:hover {
+    color: #999;
+    font-size: 1em;
+}
+
+.menu {
+    *zoom: 1;
+}
+
+
+ .menu-item > li.menu-first {
+    position: relative;
+}
+
+li.menu-first ul.menu-second {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+li.menu-first:hover ul.menu-second {
+    top: 50px;
+    visibility: visible;
+    opacity: 1;
+}
 
 
 /* MENU BUTTON */
