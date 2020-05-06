@@ -42,8 +42,8 @@ CSS TABLE OF CONTENTS
 /* TYPOGRAPHY */
 body {
     font-family: miller-banner, serif;
-    font-size: 100%; /* This sets the value of 1em */
-    line-height: 1.4;
+    font-size: 80%; /* This sets the value of 1em */
+    line-height: 1.2;
     color: rgba(31, 30, 30, 0.8);
 }
 
@@ -85,12 +85,12 @@ p {
 
 /* TYPE SPECIMEN */
 h2.section-head {
-   text-align: center;
+    text-align: center;
 }
 #about h5, #collection h5 {
-  width: 500px;
-  margin: 50px auto;
-  text-align: center;  
+    width: 500px;
+    margin: 50px auto;
+    text-align: center;  
 }
 
 /* LINKS */
@@ -123,10 +123,11 @@ img {
 .button,button,input[type="submit"] {
     font-family: eurostile, sans-serif;
     font-size: 1em;
+    font-weight: bold;
     display: inline-block;
     background-color:black;
     color: rgb(218, 73, 21);
-    padding: .5em 2em;
+    padding: .2em 1em;
     border-radius: 2em;
     text-transform: uppercase;
     letter-spacing: .05em;
@@ -136,9 +137,9 @@ img {
 }
 
 .button:hover,button:hover,input[type="submit"]:hover {
-color: rgb(146, 215, 223);
-background:rgb(27, 22, 20);
-text-decoration: none;
+    color: white;
+    background:rgb(27, 22, 20);
+    text-decoration: none;
 }
 .button.alt {
     background-color: transparent;
@@ -208,7 +209,7 @@ body {
     flex-grow: 0;
     margin-left: 1%;
     margin-right: 1%;
-    border: solid 1px red;
+    /* border: solid 1px red; */
 }
     .one-whole { width: 100%}
     .one-half { width: 48%}
@@ -221,7 +222,6 @@ body {
     .push-one-fourth { margin-left: 26%;}
     .push-one-half { margin-left: 51%;}
     .push-one-third { margin-left: 34.333%;}
-
     .row.centered {
         justify-content: center;
     }
@@ -231,8 +231,6 @@ body {
         max-width: 450px;
     }
 }
-
-
 
 /* SITE STURCTURE */
 
@@ -252,7 +250,6 @@ header.site-header  {
     padding: 0;
 }
 
-
 @media (min-width: 768px) {
     .site-header {
       position: fixed;
@@ -271,8 +268,11 @@ header.site-header  {
 
 /* BG IMAGE --------------------------- */
 footer {
-    background-image: url(../img/footer-bg.jpg);
+    background-image: url(../img/mu_footerbg2000x800.jpg);
+    /* background-image: url(../img/unsplash_bg.jpg); */
     background-size: cover; 
+    background-repeat: no-repeat;
+    /* margin-top: 50px; */
 }
 /* ------------------------------------- */
 
@@ -290,16 +290,16 @@ padding-top: 20px;
 
 .site-info-menu {
     max-width: 500px;
-    border: solid 1px blue;
-    
+    /* border: solid 1px blue; */   
 }
+
 .site-info-menu li a {
     list-style: none;
     width: 300px;
     height: auto;
     color: white;
-
 }
+
 .social-links {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -314,7 +314,7 @@ padding-top: 20px;
     -ms-flex-align: center;
     list-style: none;
     margin: 1px;
-    border: solid 1px blue;
+    /* border: solid 1px blue; */
  }
  
 .social-links .social-links:hover {
@@ -330,33 +330,37 @@ li.social-links {
     width: 30px;
     height: auto; 
 }
+
 .social-links ul {
-    padding-left: 50px;
+    padding-left: 35px;
 }
 
 .more-info {
     padding-right: 50px;
-    border: solid 1px blue;
+    /* border: solid 1px blue; */
 }
 
 .more-info h3 {
     color: #fff;
-    font-size: 1.2em;
+    font-size: .8em;
     text-align: right;
+    font-family: miller-banner, serif; 
 }
 
-input {
+input.f-label {
     text-align: center;
-    font-size: 1em;
+    font-size: .8em;
+    font-family: miller-banner, serif;
+    padding: .5em 2em;
 
 }
 .logo-img img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 20px;
-  
+    padding-bottom: 20px; 
 }
+
 
 /* SITE ID (LOGO) */
 .site-id h1 {
@@ -378,27 +382,30 @@ header.site-header {
     margin: 0; 
     padding: 0;
 }
+
 .side-menu li {
     list-style: none;
 }
+
 .side-menu a {
    display: block;
    padding: .5em 1em;
 }
+
 .side-menu .container {
     padding-top: 80px;
 }
+
 .collection-menu ul {
 font-family: eurostile, sans-serif;
 font-weight: bolder;
-
 }
+
 .menu-box li.main-b {
     font-family: eurostile, sans-serif;
    font-size: 1.2em;
     font-weight: bold;
-    }
-
+ }
 
 
 /* MENU BUTTON */
@@ -407,13 +414,16 @@ font-weight: bolder;
     left: -9999px;
     padding: .5em;
 }
+
 .menu-button:hover {
   cursor: pointer;
 }
+
 .menu-button::selection {
     color: none;
     background: none;
 }
+
 
 /* TOGGLE NAV */
 @media (max-width: 767px) {
@@ -432,6 +442,7 @@ font-weight: bolder;
     text-align: left;
 }
 
+
 /* HIDE NAV ON SMALL SCREEN BY DEFAULT */
 .toggle-nav .site-nav ul {
     position: absolute;
@@ -446,8 +457,8 @@ font-weight: bolder;
     display: block;
     margin-top: 1em;
     /* transition: all .5s ease;  */
-  
 }
+
 .toggle-nav.expanded .site-nav a {
    background: rgb(88, 70, 64);
   color: rgba(255, 255, 255, 1);
@@ -455,6 +466,7 @@ font-weight: bolder;
     padding: 1em;
     }
 }
+
 .toggle-nav.expanded .site-nav a:hover {
     background:rgb(27, 22, 20) ;
 }
@@ -464,6 +476,7 @@ font-weight: bolder;
     transition: all 1s ease;
     max-height: 0;
 }
+
 .toggle-nav.expanded .site-nav ul {
     /* transition: all 1s ease; */
     max-height: 400px;
@@ -483,6 +496,7 @@ font-weight: bolder;
     font-size: 1.5em;
     transform: rotate(0deg);
 }
+
 .expanded .navicon::after {
     content: "\2715";
     transform: rotate(-90deg);
@@ -494,7 +508,7 @@ font-weight: bolder;
 
 /* SECTION */
 section {
-    padding: 0;
+    padding-bottom: 50px;
 }
 
 h2.section-head {
@@ -703,12 +717,14 @@ p.price {
 /* CONTACT SECTION */
 #contact h3 {
     font-family: miller-banner, serif;
-    font-style: italic;
     font-weight: bold;
 }
 #contact h4 {
-  font-family: miller-banner, serif; 
-  padding-top: 15px; 
+  /* font-family: miller-banner, serif;  */
+  font-family: eurostile, sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+  font-style: italic;
 }
 .contact-form {
     padding-top: 10px;
@@ -730,45 +746,14 @@ p.price {
     height: 80%;
 }
 
-
-
-
-/* ARTICLE */
-#hero p {
-    margin-left: auto;
-    margin-right: auto;
-
-}
-article {
-    padding: 4em 0;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-article .date + p::first-letter {
-color: rgba(0,0,0,.8);
-font-size: 5.6em;
-line-height: .9;
-font-weight: bold;
-float: left;
-margin: 0 .2em 0 0;
-padding: 0;
-display: block;
-}
-article .date + p::first-line {
-    color: rgba(0,0,0,.8);
-   text-transform: uppercase;
-   font-weight: bold;
-    }
-
 blockquote{
     font-size: 1.5em;
     line-height: 1.2em;
-    font-style: italic;
+    /* font-style: italic; */
     font-weight: bolder;
 }
 label {
-    font-family: eurostile, sans-serif;
+    font-family: miller-banner, serif;
 }
 label, input {
     display: block;
@@ -782,6 +767,11 @@ input, textarea {
     padding: .5em;
     font-size: inherit;
 }
+textarea {
+    height: 80px;
+    margin-top: .5em;
+    margin-bottom: 0;
+}
 label {
     margin-top: .5em;
     margin-bottom: 0;
@@ -790,9 +780,7 @@ input[type="text"] {
     margin-top: .5em;
     margin-bottom: .2em;
 }
-#contactinfo a {
-    color:rgb(146, 215, 223);
-}
+
 
 /* -------------------------- */
 /* -------------------------- */
