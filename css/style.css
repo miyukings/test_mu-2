@@ -259,40 +259,104 @@ header.site-header  {
       width: 300px;
     }
 
-.site-header a,
-.site-footer a {
+.site-header a {
     color: rgba(83, 82, 82, 0.8);
     text-decoration: none;
 }
-.site-header a:hover,
-.site-footer a:hover {
+.site-header a:hover {
     color: rgb(218, 73, 21);
 }
 
 /* SITE FOOTER */
 
-.site-footer .site-info-menu ul li a {
-    max-width: 200px;
-    color: white; 
-    border: solid 1px blue; 
-    
-}
-.site-info-menu li {
-    list-style: none;
-}
-
-.site-footer {
-    position: relative;
-    z-index: 100;
-    padding: 1em 0 1em 70px;
-  }
-
-
+/* BG IMAGE --------------------------- */
 footer {
     background-image: url(../img/footer-bg.jpg);
     background-size: cover; 
 }
+/* ------------------------------------- */
 
+
+.site-footer .f-container {
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-pack: justify;
+-ms-flex-pack: justify;
+justify-content: space-between; 
+padding-top: 20px;
+}
+   
+
+.site-info-menu {
+    max-width: 500px;
+    border: solid 1px blue;
+    
+}
+.site-info-menu li a {
+    list-style: none;
+    width: 300px;
+    height: auto;
+    color: white;
+
+}
+.social-links {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    list-style: none;
+    margin: 1px;
+    border: solid 1px blue;
+ }
+ 
+.social-links .social-links:hover {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+ }
+
+li.social-links {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: auto; 
+}
+.social-links ul {
+    padding-left: 50px;
+}
+
+.more-info {
+    padding-right: 50px;
+    border: solid 1px blue;
+}
+
+.more-info h3 {
+    color: #fff;
+    font-size: 1.2em;
+    text-align: right;
+}
+
+input {
+    text-align: center;
+    font-size: 1em;
+
+}
+.logo-img img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+  
+}
 
 /* SITE ID (LOGO) */
 .site-id h1 {
