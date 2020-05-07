@@ -12,168 +12,22 @@
     <!-- FOR IE/EDGE -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- MAIN CSS FILE-->
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!--ADOBE FONT-->
+    <link rel="stylesheet" href="https://use.typekit.net/bnm7oer.css">
 
     <!-- CSS FILE for SLICK-->
     <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
     <link rel="stylesheet" type="text/css" href="css/slick.css" />
 
-    <!--ADOBE FONT-->
-    <link rel="stylesheet" href="https://use.typekit.net/bnm7oer.css">
-
-    <!-- JQUERY FOR CAROUSEL -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script>
-        $(function () {
-            var setElm = $('.carousel'),
-                slideSpeed = 500,
-                slideDelay = 5000,
-                slideEasing = 'swing';
-
-            $(window).load(function () {
-                setElm.each(function () {
-                    var self = $(this),
-                        selfWidth = self.innerWidth(),
-                        selfUl = self.find('ul'),
-                        selfLi = selfUl.find('li'),
-                        liFirst = selfUl.find('li:first'),
-                        liLast = selfUl.find('li:last'),
-                        listWidth = selfLi.outerWidth(true),
-                        listCount = selfLi.length,
-                        slideWidth = listWidth * listCount;
-
-                    selfUl.css({ width: slideWidth });
-
-                    self.wrapAll('<div class="slideWrap" />').find('ul').wrapAll('<div class="movePanel" />');
-
-                    var slideWrap = self.parent('.slideWrap'),
-                        slidePanel = self.find('.movePanel');
-
-                    if (selfWidth < slideWidth) {
-                        selfUl.clone().prependTo(slidePanel);
-                        selfUl.clone().appendTo(slidePanel);
-
-                        slidePanel.find('ul').eq('1').addClass('mainList');
-
-                        var mainList = slidePanel.find('.mainList').find('li');
-                        mainList.eq('0').addClass('mainActive');
-
-                        var allList = slidePanel.find('li'),
-                            allListCount = slidePanel.find('li').length;
+    <!-- MAIN CSS FILE-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 
 
-                        // SLIDER AREA POSITION SETTING
-                        var baseWrapWidth = listWidth * listCount,
-                            allWrapWidth = listWidth * allListCount,
-                            posResetNext = -(baseWrapWidth) * 2,
-                            posResetPrev = -(baseWrapWidth) + (listWidth);
 
-                        slidePanel.css({ left: -(baseWrapWidth), width: allWrapWidth }).find('ul').css({ width: baseWrapWidth });
-
-
-                        // Next/Back BUTTON
-                        slideWrap.append('<a href="javascript:void(0);" class="btnPrev"></a><a href="javascript:void(0);" class="btnNext"></a>');
-
-                        var btnNext = slideWrap.find('.btnNext'),
-                            btnPrev = slideWrap.find('.btnPrev');
-
-                        btnNext.click(function () {
-                            slideNext();
-                        });
-
-                        btnPrev.click(function () {
-                            slidePrev();
-                        });
-
-                        function slideNext() {
-                            slidePanel.not(':animated').each(function () {
-                                timerStop();
-                                var posLeft = parseInt(slidePanel.css('left')),
-                                    moveLeft = posLeft - listWidth;
-                                slidePanel.stop().animate({ left: (moveLeft) }, slideSpeed, slideEasing, function () {
-                                    var adjustLeft = parseInt(slidePanel.css('left'));
-                                    if (adjustLeft <= posResetNext) {
-                                        slidePanel.css({ left: -(baseWrapWidth) });
-                                    }
-                                });
-
-                                var setActive = selfUl.find('.mainActive'),
-                                    listIndex = selfLi.index(setActive),
-                                    nextCount = listIndex + 1;
-
-                                self.find('.mainActive').removeClass('mainActive');
-
-                                if (listCount == nextCount) {
-                                    liFirst.addClass('mainActive');
-                                    selfUl.next('ul').find('li:first').addClass('mainActive');
-                                } else {
-                                    setActive.next().addClass('mainActive');
-                                }
-
-                                timerStart();
-                            });
-                        }
-
-                        function slidePrev() {
-                            slidePanel.not(':animated').each(function () {
-                                timerStop();
-                                var posLeft = parseInt(slidePanel.css('left')),
-                                    moveLeft = posLeft + listWidth;
-                                slidePanel.stop().animate({ left: (moveLeft) }, slideSpeed, slideEasing, function () {
-                                    var adjustLeft = parseInt(slidePanel.css('left'));
-                                    if (adjustLeft >= posResetPrev) {
-                                        slidePanel.css({ left: posResetNext + listWidth });
-                                    }
-                                });
-
-                                var setActive = selfUl.find('.mainActive'),
-                                    listIndex = selfLi.index(setActive),
-                                    nextCount = listIndex + 1;
-
-                                self.find('.mainActive').removeClass('mainActive');
-
-                                if (1 == nextCount) {
-                                    liLast.addClass('mainActive');
-                                    selfUl.prev('ul').find('li:last').addClass('mainActive');
-                                } else {
-                                    setActive.prev().addClass('mainActive');
-                                }
-
-                                timerStart();
-                            });
-                        }
-
-                        // SLIDE TIMER
-                        var slideTimer;
-
-                        function timerStart() {
-                            slideTimer = setInterval(function () {
-                                slideNext();
-                            }, slideDelay);
-                        }
-                        timerStart();
-
-                        function timerStop() {
-                            clearInterval(slideTimer);
-                        }
-
-                        // SLIDE ALIGN CENTER
-                        $(window).on('resize', function () {
-                            var wrapWidth = slideWrap.width();
-                            self.css({ marginLeft: (wrapWidth / 2) - (listWidth / 2) })
-                        }).resize();
-                    }
-                });
-                setElm.css({ visibility: 'visible' });
-            });
-        });
-    </script>
 
 </head>
 
 <body>
-
 
     <header class="site-header">
 
@@ -198,30 +52,21 @@
                 <li class="menu-first"><a href="#contact">Contact Us</a></li>
                 <li class="menu-first"><a href="#">Account</a></li>
             </ul>
-
         </nav>
-
     </header>
 
 
     <main class="site-main">
+        <div class="container">
+            <section id="hero">
 
-        <section id="hero">
-            <div class="container">
-                <div class="big-logo"><img src="img/logo_orange1000x457.png" alt="Mu Logo">
+
+                <div class="bg-slider">
+                    <h1 class="big-logo"><img src="img/logo_orange1000x457.png" alt="Mu Logo"></h1>
                 </div>
 
-                <!-- <div class="slider">
-                    <div><img src="img/3rings.jpg" alt="Three Rings"></div>
-                    <div><img src="img/flowerset.jpg" alt="Flower Series"></div>
-                    <div><img src="img/roundbangle.jpg" alt="Geometric Series"></div>
-                </div> -->
-            </div>
-
-
-
-        </section>
-
+            </section>
+        </div>
 
         <section id="collection">
             <div class="container">
@@ -392,14 +237,177 @@
     </footer>
 
 
-    <!-- MAIN JS FILE -->
-    <script src="js/script.js"></script>
+    <!-- JQUERY -->
+    <script src="js/jquery.min.js"></script>
 
-    <!-- SLICK SLIDER JS FILE -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- SLICK SLIDER JS -->
     <script src="js/slick.js"></script>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var setElm = $('.carousel'),
+                slideSpeed = 500,
+                slideDelay = 5000,
+                slideEasing = 'swing';
 
+            $(window).load(function () {
+                setElm.each(function () {
+                    var self = $(this),
+                        selfWidth = self.innerWidth(),
+                        selfUl = self.find('ul'),
+                        selfLi = selfUl.find('li'),
+                        liFirst = selfUl.find('li:first'),
+                        liLast = selfUl.find('li:last'),
+                        listWidth = selfLi.outerWidth(true),
+                        listCount = selfLi.length,
+                        slideWidth = listWidth * listCount;
+
+                    selfUl.css({ width: slideWidth });
+
+                    self.wrapAll('<div class="slideWrap" />').find('ul').wrapAll('<div class="movePanel" />');
+
+                    var slideWrap = self.parent('.slideWrap'),
+                        slidePanel = self.find('.movePanel');
+
+                    if (selfWidth < slideWidth) {
+                        selfUl.clone().prependTo(slidePanel);
+                        selfUl.clone().appendTo(slidePanel);
+
+                        slidePanel.find('ul').eq('1').addClass('mainList');
+
+                        var mainList = slidePanel.find('.mainList').find('li');
+                        mainList.eq('0').addClass('mainActive');
+
+                        var allList = slidePanel.find('li'),
+                            allListCount = slidePanel.find('li').length;
+
+
+                        // スライダーエリアの位置設定
+                        var baseWrapWidth = listWidth * listCount,
+                            allWrapWidth = listWidth * allListCount,
+                            posResetNext = -(baseWrapWidth) * 2,
+                            posResetPrev = -(baseWrapWidth) + (listWidth);
+
+                        slidePanel.css({ left: -(baseWrapWidth), width: allWrapWidth }).find('ul').css({ width: baseWrapWidth });
+
+
+                        // Next/Backボタン
+                        slideWrap.append('<a href="javascript:void(0);" class="btnPrev"></a><a href="javascript:void(0);" class="btnNext"></a>');
+
+                        var btnNext = slideWrap.find('.btnNext'),
+                            btnPrev = slideWrap.find('.btnPrev');
+
+                        btnNext.click(function () {
+                            slideNext();
+                        });
+
+                        btnPrev.click(function () {
+                            slidePrev();
+                        });
+
+                        function slideNext() {
+                            slidePanel.not(':animated').each(function () {
+                                timerStop();
+                                var posLeft = parseInt(slidePanel.css('left')),
+                                    moveLeft = posLeft - listWidth;
+                                slidePanel.stop().animate({ left: (moveLeft) }, slideSpeed, slideEasing, function () {
+                                    var adjustLeft = parseInt(slidePanel.css('left'));
+                                    if (adjustLeft <= posResetNext) {
+                                        slidePanel.css({ left: -(baseWrapWidth) });
+                                    }
+                                });
+
+                                var setActive = selfUl.find('.mainActive'),
+                                    listIndex = selfLi.index(setActive),
+                                    nextCount = listIndex + 1;
+
+                                self.find('.mainActive').removeClass('mainActive');
+
+                                if (listCount == nextCount) {
+                                    liFirst.addClass('mainActive');
+                                    selfUl.next('ul').find('li:first').addClass('mainActive');
+                                } else {
+                                    setActive.next().addClass('mainActive');
+                                }
+
+                                timerStart();
+                            });
+                        }
+
+                        function slidePrev() {
+                            slidePanel.not(':animated').each(function () {
+                                timerStop();
+                                var posLeft = parseInt(slidePanel.css('left')),
+                                    moveLeft = posLeft + listWidth;
+                                slidePanel.stop().animate({ left: (moveLeft) }, slideSpeed, slideEasing, function () {
+                                    var adjustLeft = parseInt(slidePanel.css('left'));
+                                    if (adjustLeft >= posResetPrev) {
+                                        slidePanel.css({ left: posResetNext + listWidth });
+                                    }
+                                });
+
+                                var setActive = selfUl.find('.mainActive'),
+                                    listIndex = selfLi.index(setActive),
+                                    nextCount = listIndex + 1;
+
+                                self.find('.mainActive').removeClass('mainActive');
+
+                                if (1 == nextCount) {
+                                    liLast.addClass('mainActive');
+                                    selfUl.prev('ul').find('li:last').addClass('mainActive');
+                                } else {
+                                    setActive.prev().addClass('mainActive');
+                                }
+
+                                timerStart();
+                            });
+                        }
+
+                        // スライドタイマー
+                        var slideTimer;
+
+                        function timerStart() {
+                            slideTimer = setInterval(function () {
+                                slideNext();
+                            }, slideDelay);
+                        }
+                        timerStart();
+
+                        function timerStop() {
+                            clearInterval(slideTimer);
+                        }
+
+                        // スライド中央揃え
+                        $(window).on('resize', function () {
+                            var wrapWidth = slideWrap.width();
+                            self.css({ marginLeft: (wrapWidth / 2) - (listWidth / 2) })
+                        }).resize();
+                    }
+                });
+                setElm.css({ visibility: 'visible' });
+            });
+        });
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/jquery.bgswitcher.js"></script>
+    <script>
+        jQuery(function ($) {
+            $('.bg-slider').bgSwitcher({
+                images: ['img/3rings.jpg', 'img/flowerset.jpg', 'img/roundbangle.jpg'], // 切替背景画像を指定
+                interval: 3000, // 背景画像を切り替える間隔を指定 3000=3秒
+                loop: true, // 切り替えを繰り返すか指定 true=繰り返す　false=繰り返さない
+                shuffle: true, // 背景画像の順番をシャッフルするか指定 true=する　false=しない
+                effect: "blind", // エフェクトの種類をfade,blind,clip,slide,drop,hideから指定
+                duration: 500, // エフェクトの時間を指定します。
+                easing: "swing" // エフェクトのイージングをlinear,swingから指定
+            });
+        });
+    </script>
+
+    <!-- MAIN JS FILE -->
+    <script src="js/script.js"></script>
 
 
 </body>

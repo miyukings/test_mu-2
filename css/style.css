@@ -161,11 +161,15 @@ body {
     font-size: 87.5%  /*  14px */ ;
 }
 
+
+
 /* CONTAINER */
 .container {
     margin-left: 300px;
     margin-right: auto;
     padding: 0;
+    
+   
     /* overflow-x: hidden; */
     border: solid 1px rgb(6, 85, 41);
 }
@@ -241,6 +245,7 @@ header.site-header  {
     width: 25%;
     background-color: transparent;
     position: fixed;
+    z-index: -1;
 }
 
 .site-header {
@@ -575,20 +580,32 @@ h2.section-head {
 }
 
 /* HERO SECTION */ 
- #hero .container {
-    background-image: url(../img/3rings.jpg);
-    background-size: cover;
-    text-align: center;
+.container section#hero, section#collection {
+    margin-top: 0;
+    margin-bottom: 0;
+
 }
 
-/* #hero.slider img {
-    transform-origin: center top;
-    transform: scale(1.1);
-    transition: 5s ease-out;
-  }
-  .slider .slick-active img {
-    transform: scale(1.0);
-  } */
+h1.big-logo img {
+    width: 300px;
+    height: auto;
+    position: absolute;
+    z-index: 3;
+   bottom: 0px;
+   left: 30%;
+}
+
+.bg-slider {
+	width: 100vw;
+	height: 100vh;
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: -1;
+}
 
 
 
